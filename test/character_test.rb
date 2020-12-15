@@ -10,12 +10,3 @@ class CharacterTest < Minitest::Test
     assert_instance_of Character, kitt
   end
 end
-
-# pry(main)> kitt.name
-# # => "KITT"
-#
-# pry(main)> kitt.actor
-# # => "William Daniels"
-#
-# pry(main)> kitt.salary
-# # => 1000000
