@@ -24,6 +24,14 @@ class Network
   end
 
   def actors_by_show
-    { @shows => @characters.actors }
+    {
+      "Knight Rider" => @shows.character.actors,
+      "Baywatch" => @shows.character.actors,
+      "Parks and Recreation" => @shows.character.actors
+    }
   end
+
+  def shows_by_actor
+  end
+
 end
