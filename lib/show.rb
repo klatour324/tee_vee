@@ -22,4 +22,12 @@ class Show
       return character.actor if character.salary > 1_000_000
     end
   end
+
+  def actors
+    actor_names = []
+    @characters.each do |character|
+      actor_names.push(character.actor)
+    end
+    actor_names
+  end
 end
