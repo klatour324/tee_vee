@@ -30,11 +30,15 @@ class NetworkTest < Minitest::Test
     ron_swanson = Character.new({name: "Ron Swanson", actor: "Nick Offerman", salary: 1_400_000})
     parks_and_rec = Show.new("Parks and Recreation", "Michael Shur & Greg Daniels", [leslie_knope, ron_swanson])
 
+    mitch = Character.new({name: "Mitch Buchannon", actor: "David Hasselhoff", salary: 1_200_000})
+    baywatch = Show.new("Baywatch", "Gregory Bonann", [mitch])
+
     nbc.add_show(knight_rider)
-
     nbc.add_show(parks_and_rec)
+    nbc.add_show(baywatch)
 
-    assert_equal [knight_rider, parks_and_rec], nbc.shows
+
+    assert_equal [knight_rider, parks_and_rec, baywatch], nbc.shows
   end
 
   def test_it_can_have_main_characters
@@ -54,13 +58,28 @@ class NetworkTest < Minitest::Test
 
     assert_equal [kitt], nbc.main_characters
   end
-end
 
-  # pry(main)> nbc.main_characters
-  # # => [#<Character:0x00007f98a4ba8dc8...>]
-  #
-  # pry(main)> nbc.actors_by_show
-  # # => {
-  #       #<Show:0x00007fe5f8398970...> => ["David Hasselhoff", "William Daniels"],
-  #       #<Show:0x00007fe5f88b0a20...> => ["Amy Poehler", "Nick Offerman"]
-  # #    }
+  def test_it_can_have_actors_by_show
+    nbc = Network.new("NBC")
+
+    michael_knight = Character.new({name: "Michael Knight", actor: "David Hasselhoff", salary: 1_600_000})
+    kitt = Character.new({name: "KITT", actor: "William Daniels", salary: 1_000_000})
+    knight_rider = Show.new("Knight Rider", "Glen Larson", [michael_knight, kitt])
+
+    leslie_knope = Character.new({name: "Leslie Knope", actor: "Amy Poehler", salary: 2_000_000})
+    ron_swanson = Character.new({name: "Ron Swanson", actor: "Nick Offerman", salary: 1_400_000})
+    parks_and_rec = Show.new("Parks and Recreation", "Michael Shur & Greg Daniels", [leslie_knope, ron_swanson])
+
+    nbc.add_show(knight_rider)
+    nbc.add_show(parks_and_rec)
+
+    expected = {
+            "Knight Rider" => ["David Hasselhoff", "William Daniels"],
+            "Parks and Recreation" => ["Amy Poehler", "Nick Offerman"]
+          }
+
+    actual = nbc.actors_by_show
+
+    assert_equal expected, actual
+  end
+end
