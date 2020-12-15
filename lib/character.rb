@@ -6,6 +6,6 @@ class Character
   def initialize(info)
     @name = info[:name]
     @actor = info[:actor]
-    @salary = info[:salary]
+    @salary = info[:salary].to_i
   end
 end
