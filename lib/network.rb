@@ -22,4 +22,8 @@ class Network
     end
     main_actor_names
   end
+
+  def actors_by_show
+    { @shows => @characters.actors }
+  end
 end
